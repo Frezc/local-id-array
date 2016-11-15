@@ -109,3 +109,28 @@ const array = new LocalIdArray([{ name: 'obj' }, 3, 5]);
 // newArr [{ name: 'obj' }, 'new Item1', 2, 5]
 const newArr = array.splice(1, 1, 'new Item1', 2);
 ```
+
+- length : number
+```javascript
+const array = new LocalIdArray([{ name: 'obj' }, 3, 5]);
+console.log(array.length); // 3
+```
+
+- at(index : number) : any
+```javascript
+const array = new LocalIdArray([{ name: 'obj' }, 3, 5]);
+console.log(array.at(1)); // 3
+```
+
+- access like array (read only) (This feature need Proxy polyfill.)
+```javascript
+const array = new LocalIdArray([{ name: 'obj' }, 3, 5]);
+console.log(array[1]); // 3
+```
+
+- set(index : number, value : any) : LocalIdArray
+```javascript
+const array = new LocalIdArray([{ name: 'obj' }, 3, 5]);
+const newArr = array.set(0, 'string');
+console.log(newArr.at(0)); // string
+```

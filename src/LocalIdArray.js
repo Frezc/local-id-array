@@ -1,5 +1,20 @@
 import objectAssign from 'object-assign';
 
+const handler = {
+  get(target, key) {
+    if (key in target) return target[key];
+    try {
+      let n = Number(key);
+      if (!isNaN(n) && Math.abs(n) < target.length) {
+        if (n < 0) n = target.length - n;
+        return target.at(n);
+      }
+    } catch (e) {}
+
+    return target[key];
+  }
+};
+
 class LocalIdArray {
 
   constructor(arrayOrObj) {
@@ -20,6 +35,7 @@ class LocalIdArray {
       this.__map__ = {};
       this.__autoIncrement__ = 1;
     }
+    return Proxy ? new Proxy(this, handler) : this;
   }
 
   push(...items) {
@@ -80,6 +96,20 @@ class LocalIdArray {
         newObj.__map__[id] = this.__map__[id];
       }
     });
+    return newObj;
+  }
+
+  get length() {
+    return this.array.length;
+  }
+
+  at(index) {
+    return this.__map__[this.array[index]];
+  }
+
+  set(index, value) {
+    const newObj = new LocalIdArray(this);
+    newObj.__map__[newObj.array[index]] = value;
     return newObj;
   }
 }
