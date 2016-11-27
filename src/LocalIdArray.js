@@ -112,6 +112,14 @@ class LocalIdArray {
     newObj.__map__[newObj.array[index]] = value;
     return newObj;
   }
+
+  exchange(i1, i2) {
+    const newObj = new LocalIdArray(this);
+    const temp = newObj.array[i1];
+    newObj.array[i1] = newObj.array[i2];
+    newObj.array[i2] = temp;
+    return newObj;
+  }
 }
 
 export default LocalIdArray;

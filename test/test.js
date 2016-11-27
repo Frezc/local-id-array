@@ -157,4 +157,17 @@ describe('local-id-array', function () {
       expect(newArr).to.deep.equal(new LocalIdArray(['first item!'].concat(array.slice(1))));
     });
   });
+
+  describe('#exchange()', function () {
+    it('works', function () {
+      const newArr = exLia.exchange(0, 5);
+      expect(newArr).to.not.equal(exLia);
+
+      const na = array.slice();
+      const temp = na[0];
+      na[0] = na[5];
+      na[5] = temp;
+      expect(newArr.toArray()).to.deep.equal(na);
+    })
+  })
 });

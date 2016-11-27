@@ -134,3 +134,10 @@ const array = new LocalIdArray([{ name: 'obj' }, 3, 5]);
 const newArr = array.set(0, 'string');
 console.log(newArr.at(0)); // string
 ```
+
+- exchange(i1 : number, i2 : number) : LocalIdArray (exchange two item)
+```javascript
+const array = new LocalIdArray([{ name: 'obj' }, 3, 5]);
+const newArr = array.exchange(0, 1);
+console.log(newArr.toArray()); // [3, { name: 'obj' }, 5]
+```
