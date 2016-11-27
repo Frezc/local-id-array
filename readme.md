@@ -122,7 +122,7 @@ const array = new LocalIdArray([{ name: 'obj' }, 3, 5]);
 console.log(array.at(1)); // 3
 ```
 
-- access like array (read only) (This feature need Proxy polyfill.)
+- [NOT IMPELEMENT] access like array (read only) (This feature need Proxy polyfill.)
 ```javascript
 const array = new LocalIdArray([{ name: 'obj' }, 3, 5]);
 console.log(array[1]); // 3
@@ -140,4 +140,18 @@ console.log(newArr.at(0)); // string
 const array = new LocalIdArray([{ name: 'obj' }, 3, 5]);
 const newArr = array.exchange(0, 1);
 console.log(newArr.toArray()); // [3, { name: 'obj' }, 5]
+```
+
+- every(callback : func) : bool (it will return false immediately when callback return false)
+```javascript
+const array = new LocalIdArray([{ name: 'obj' }, 3, 5]);
+const result = array.every((item, index) => typeof item === 'object');
+console.log(result); // false
+```
+
+- has(callback : func) : bool (it will return true immediately when callback return true)
+```javascript
+const array = new LocalIdArray([{ name: 'obj' }, 3, 5]);
+const result = array.has((item, index) => typeof item === 'object');
+console.log(result); // true
 ```

@@ -1,5 +1,6 @@
 import objectAssign from 'object-assign';
 
+/*
 const handler = {
   get(target, key) {
     if (key in target) return target[key];
@@ -14,6 +15,7 @@ const handler = {
     return target[key];
   }
 };
+*/
 
 class LocalIdArray {
 
@@ -35,7 +37,7 @@ class LocalIdArray {
       this.__map__ = {};
       this.__autoIncrement__ = 1;
     }
-    return Proxy ? new Proxy(this, handler) : this;
+    // return window.Proxy ? new Proxy(this, handler) : this;
   }
 
   push(...items) {
@@ -119,6 +121,23 @@ class LocalIdArray {
     newObj.array[i1] = newObj.array[i2];
     newObj.array[i2] = temp;
     return newObj;
+  }
+
+  every(callback) {
+    for (let i = 0; i < this.array.length; i++) {
+      if (!callback(this.__map__[this.array[i]], i)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  has(callback) {
+    for (let i = 0; i < this.array.length; i++) {
+      if (callback(this.__map__[this.array[i]], i)) return true;
+    }
+    return false;
   }
 }
 

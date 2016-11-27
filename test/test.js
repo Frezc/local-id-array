@@ -144,11 +144,11 @@ describe('local-id-array', function () {
     });
   });
 
-  describe('#access like array', function () {
-    it('works', function () {
-      expect(exLia[1]).to.equal(array[1]);
-    });
-  });
+  // describe('#access like array', function () {
+  //   it('works', function () {
+  //     expect(exLia[1]).to.equal(array[1]);
+  //   });
+  // });
 
   describe('#set()', function () {
     it('works', function () {
@@ -168,6 +168,24 @@ describe('local-id-array', function () {
       na[0] = na[5];
       na[5] = temp;
       expect(newArr.toArray()).to.deep.equal(na);
-    })
-  })
+    });
+  });
+
+  describe('#every()', function () {
+    it('works', function () {
+      const r1 = exLia.every((item, index) => typeof item === 'number');
+      expect(r1).to.equal(false);
+      const r2 = exLia.every((item, index) => item);
+      expect(r2).to.equal(true);
+    });
+  });
+
+  describe('#has()', function () {
+    it('works', function () {
+      const r1 = exLia.has((item, index) => typeof item === 'object');
+      expect(r1).to.equal(true);
+      const r2 = exLia.has((item, index) => !item);
+      expect(r2).to.equal(false);
+    });
+  });
 });
