@@ -144,11 +144,11 @@ describe('local-id-array', function () {
     });
   });
 
-  // describe('#access like array', function () {
-  //   it('works', function () {
-  //     expect(exLia[1]).to.equal(array[1]);
-  //   });
-  // });
+  describe('#access like array [not full support]', function () {
+    it('works', function () {
+      expect(exLia[1]).to.equal(array[1]);
+    });
+  });
 
   describe('#set()', function () {
     it('works', function () {

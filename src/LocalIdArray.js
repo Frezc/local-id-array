@@ -1,6 +1,5 @@
 import objectAssign from 'object-assign';
 
-/*
 const handler = {
   get(target, key) {
     if (key in target) return target[key];
@@ -15,7 +14,6 @@ const handler = {
     return target[key];
   }
 };
-*/
 
 class LocalIdArray {
 
@@ -37,7 +35,7 @@ class LocalIdArray {
       this.__map__ = {};
       this.__autoIncrement__ = 1;
     }
-    // return window.Proxy ? new Proxy(this, handler) : this;
+    return Proxy ? new Proxy(this, handler) : this;
   }
 
   push(...items) {
